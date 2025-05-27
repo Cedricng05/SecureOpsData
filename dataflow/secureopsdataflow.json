@@ -65,7 +65,7 @@
 				"initialSource, secondSource exists($firstName == $firstName,",
 				"     negate:false,",
 				"     broadcast: 'auto')~> exists",
-				"filter alterRow() ~> alterRow",
+				"filter alterRow(updateIf(!isNull(firstName))) ~> alterRow",
 				"alterRow sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",

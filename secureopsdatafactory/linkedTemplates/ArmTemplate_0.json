@@ -170,7 +170,8 @@
 							"name": "exists"
 						},
 						{
-							"name": "alterRow"
+							"name": "alterRow",
+							"description": "Ajout des expressions pour modifier les lignes"
 						}
 					],
 					"scriptLines": [
@@ -194,7 +195,7 @@
 						"initialSource, secondSource exists($firstName == $firstName,",
 						"     negate:false,",
 						"     broadcast: 'auto')~> exists",
-						"filter alterRow() ~> alterRow",
+						"filter alterRow(updateIf(!isNull(firstName))) ~> alterRow",
 						"alterRow sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     umask: 0022,",
@@ -293,7 +294,10 @@
 							"dataflow": {
 								"referenceName": "secureopsdataflow",
 								"type": "DataFlowReference",
-								"parameters": {},
+								"parameters": {
+									"firstName": "firstName",
+									"lastName": "lastName"
+								},
 								"datasetParameters": {
 									"initialSource": {},
 									"secondSource": {},
@@ -327,7 +331,7 @@
 			"properties": {
 				"description": "Déclenchement de flux journalier (pipeline)",
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {

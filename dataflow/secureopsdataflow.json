@@ -22,6 +22,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "Json3",
+						"type": "DatasetReference"
+					},
 					"name": "sink"
 				}
 			],
@@ -56,13 +60,16 @@
 				"          lastName = $firstName ? string,",
 				"     format: 'json',",
 				"     documentForm: 'singleDocument') ~> analyzer",
-				"analyzer filter(add(firstName, lastName)) ~> filter",
+				"analyzer filter(isDouble(firstName)) ~> filter",
 				"initialSource, secondSource exists($firstName == $firstName,",
 				"     negate:false,",
 				"     broadcast: 'auto')~> exists",
 				"filter alterRow() ~> alterRow",
 				"alterRow sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1) ~> sink"

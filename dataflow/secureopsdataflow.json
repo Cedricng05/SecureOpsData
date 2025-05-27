@@ -64,7 +64,8 @@
 				"alterRow sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink"
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1) ~> sink"
 			]
 		}
 	}

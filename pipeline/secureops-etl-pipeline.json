@@ -60,7 +60,7 @@
 				]
 			},
 			{
-				"name": "Data flow1",
+				"name": "Data flow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -73,7 +73,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow1",
+						"referenceName": "secureopsdataflow",
 						"type": "DataFlowReference"
 					},
 					"compute": {

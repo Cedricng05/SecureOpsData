@@ -44,7 +44,7 @@
 				"     format: 'json',",
 				"     documentForm: 'singleDocument') ~> analyzer",
 				"analyzer filter(ERROR_FUNCTION('')) ~> filter",
-				"source exists(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"source exists($defaultParams == $defaultParams,",
 				"     negate:false,",
 				"     broadcast: 'auto')~> exists",
 				"filter alterRow() ~> alterRow",

@@ -74,7 +74,11 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "secureopsdataflow",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"parameters": {
+							"firstName": "firstName",
+							"lastName": "lastName"
+						}
 					},
 					"compute": {
 						"coreCount": 8,

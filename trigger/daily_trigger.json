@@ -9,6 +9,9 @@
 				"pipelineReference": {
 					"referenceName": "secureops-etl-pipeline",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"": "123"
 				}
 			}
 		],

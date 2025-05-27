@@ -56,7 +56,7 @@
 				"          lastName = $firstName ? string,",
 				"     format: 'json',",
 				"     documentForm: 'singleDocument') ~> analyzer",
-				"analyzer filter(ERROR_FUNCTION('')) ~> filter",
+				"analyzer filter(add(firstName, lastName)) ~> filter",
 				"initialSource, secondSource exists($firstName == $firstName,",
 				"     negate:false,",
 				"     broadcast: 'auto')~> exists",

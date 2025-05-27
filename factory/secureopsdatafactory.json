@@ -1,0 +1,9 @@
+{
+	"name": "secureopsdatafactory",
+	"location": "francecentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2aefad87-c16f-45eb-b20a-aad8f00183ac",
+		"tenantId": "6a65c321-1ea6-4940-aaf5-ac8276226439"
+	}
+}

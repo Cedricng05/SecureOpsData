@@ -10,6 +10,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "myfile",
+				"folderPath": {
+					"value": "@pipeline().DataFactory",
+					"type": "Expression"
+				},
 				"container": "secureopsfilesystem"
 			}
 		},

@@ -1,0 +1,25 @@
+{
+	"name": "daily_trigger",
+	"properties": {
+		"description": "Déclenchement de flux journalier (pipeline)",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "secureops-etl-pipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2025-05-27T15:00:00",
+				"timeZone": "Romance Standard Time"
+			}
+		}
+	}
+}

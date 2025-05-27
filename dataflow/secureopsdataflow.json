@@ -40,7 +40,8 @@
 					"name": "exists"
 				},
 				{
-					"name": "alterRow"
+					"name": "alterRow",
+					"description": "Ajout des expressions pour modifier les lignes"
 				}
 			],
 			"scriptLines": [

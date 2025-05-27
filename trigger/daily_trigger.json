@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Déclenchement de flux journalier (pipeline)",
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {

@@ -1,0 +1,80 @@
+{
+	"name": "secureopsdataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "initialSource"
+				},
+				{
+					"dataset": {
+						"referenceName": "Json2",
+						"type": "DatasetReference"
+					},
+					"name": "secondSource",
+					"description": "Deuxième jeu de données source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Json3",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "analyzer"
+				},
+				{
+					"name": "filter"
+				},
+				{
+					"name": "exists"
+				},
+				{
+					"name": "alterRow",
+					"description": "Ajout des expressions pour modifier les lignes"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     firstName as string (firstName),",
+				"     lastName as string (lastName)",
+				"}",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> initialSource",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> secondSource",
+				"exists parse(firstName = $firstName ? string,",
+				"          lastName = $firstName ? string,",
+				"     format: 'json',",
+				"     documentForm: 'singleDocument') ~> analyzer",
+				"analyzer filter(isDouble(firstName)) ~> filter",
+				"initialSource, secondSource exists($firstName == $firstName,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists",
+				"filter alterRow(updateIf(!isNull(firstName))) ~> alterRow",
+				"alterRow sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1) ~> sink"
+			]
+		}
+	}
+}
